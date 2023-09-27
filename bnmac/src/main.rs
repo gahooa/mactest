@@ -18,10 +18,23 @@ fn main() {
         WHERE True
             AND Email != "jgarber@appcove.com"
             AND FirstName = $first_name
+            #>>
         GROUP BY 
             first_name,
             last_name,
             email,
             pets
+            +, -, *, /, %, ^, |/ , ||/, !, !!, @, =, <>, !=, <, >, <=, >=, !<, !>, &, |, #, ~, <<, >>, AND, OR, NOT, @@, @>, <@, ||, &&, ->, ->>, #>, #>>, @>, <@, &&, -|-
+
+
     );
+
+    mymac::create_inline_struct_foo!{};
+
+    let x = Foo {
+        a: 10
+    };
+
+    println!("x is {:?}", x);
+    
 }

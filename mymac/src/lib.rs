@@ -1,9 +1,9 @@
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
-use proc_macro2::{TokenTree, Span};
-use quote::{quote, ToTokens};
-use std::iter::Peekable;
+use proc_macro2::TokenTree;
+use quote::quote;
+
 
 fn is_all_uppercase(ident: &str) -> bool {
     ident.chars().all(|c| !c.is_lowercase())
@@ -62,7 +62,6 @@ pub fn print_each_token(input: TokenStream) -> TokenStream {
                 output_string.push_str(" ) ");
                 prev_was_punct = false;
             },
-            _ => { prev_was_punct = false; }
         }
     }
 
@@ -70,4 +69,17 @@ pub fn print_each_token(input: TokenStream) -> TokenStream {
     println!("Params: {:?}", params);
 
     quote! { () }.into()
+}
+
+
+
+#[proc_macro]
+pub fn create_inline_struct_foo(_input: TokenStream) -> TokenStream {
+    let output = quote! {
+        #[derive(Debug)]
+        struct Foo {
+            a: i32,
+        }
+    };
+    output.into()
 }
